@@ -75,6 +75,6 @@ def reload_database():
     dispose_conections()
 
     if ret_code > 0:
-        return 'False'
+        return 'false'
     else:
-        return 'True'
+        return 'true'
