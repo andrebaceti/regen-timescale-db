@@ -2,6 +2,13 @@
 
 This image works for **postgres:12** and have postgis and timescale extenssion avaiable.
 
+## Development and support
+This image was developed by Murabei Data Science to addresss the problem of building test databases for data science. It is hard to make unit-test for DS systems and update database as migrations occorur.
+
+![www.murabei.com](murabei-logo.png "Murabei Data Science")
+www.murabei.com
+
+## General description
 This is the source code used to build the image regen-timescale-db. This image runs a Postgres with timescale-db extenssion at port 5432 and a Flask server listening at 5000. Calling the port 5000 with a get request at `/reload-db/$APP_NAME/` leads to the regeneration of the database.
 
 This image can be used to regenerate the database after unit tests, an example of a nosetest implementation can be checked at `nosetest-example`.
