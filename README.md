@@ -1,4 +1,4 @@
-# regen-timescale-db: Regenerative Postgres DB for unit-tests
+# Regenerative Postgres DB for unit-tests
 
 This image works for **postgres:12** and have postgis and timescale extenssion avaiable.
 
