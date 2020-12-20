@@ -23,9 +23,9 @@ You can check the source codes on githib, it have the image and also an example 
 https://github.com/andrebaceti/regen-timescale-db
 
 ## Environment variables
-During the build or usage variables should be set:
-- **APP_NAME:** Sets the url that will be used to regenerate the database `/reload-db/$APP_NAME/`.
-- **DISPOSE_CONECTIONS:** This url may be called many times to dispose conections at Flask or Django. The database during the regen is droped and rebuild what can leads to database errors. Usualy an end-point can be implemented, an example:
+During the build or usage variables can be set:
+- **APP_NAME [necessary]:** Sets the url that will be used to regenerate the database `/reload-db/$APP_NAME/`.
+- **DISPOSE_CONECTIONS [optional]:** This url may be called many times to dispose conections at Flask or Django, if not set the image will not call end-point for connection dispose. The database during the regen is droped and rebuild what can leads to database errors. Usualy an end-point can be implemented, an example:
 
 ```
 @app.route('/pool-conections-dispose/')
