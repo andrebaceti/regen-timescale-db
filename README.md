@@ -2,6 +2,9 @@
 
 This image works for **postgres:12** and have postgis and timescale extenssion avaiable.
 
+## License
+This project is under MIT License.
+
 ## Development and support
 This image was developed by Murabei Data Science to addresss the problem of building test databases for data science. It is hard to make unit-test for DS systems and update database as migrations occorur.
 
