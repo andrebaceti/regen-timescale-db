@@ -1,15 +1,11 @@
-FROM andrebaceti/regen-timescale-db:0.0
+FROM andrebaceti/regen-timescale-db:0.3
 
 ############################################
 # Use the same values of the dumped database
+# ENV KONG_API
 ENV POSTGRES_USER="murabei"
 ENV POSTGRES_DB="murabei"
 ENV POSTGRES_PASSWORD="is_very_nice!"
-
-###############################################
-# Name of the app, this will be used to set the
-# regen end-point
-ENV APP_NAME="regen-test"
 
 #################################################################
 # Copy the dumpfile to docker-entrypoint-initdb.d so

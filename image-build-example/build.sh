@@ -1,1 +1,1 @@
-docker build -t test-regen .
+docker build --no-cache -t test-regen .

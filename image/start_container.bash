@@ -1,4 +1,6 @@
 #!/bin/bash
+source wait-for-kong.bash
+
 echo "Tune for timescale"
 timescaledb-tune -yes
 

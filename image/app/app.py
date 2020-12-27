@@ -9,11 +9,22 @@ import subprocess
 import requests
 import logging
 from flask import Flask
+from .kong import register_reload_db
 app = Flask(__name__)
 dispose_conections_url = os.environ.get(
     'DISPOSE_CONECTIONS')
-app_name = os.environ.get(
-    'APP_NAME')
+
+#########################################
+# Get app name and build reload end-point
+app_name = os.environ.get('APP_NAME')
+reload_route = "/reload-db/%s/" % app_name \
+    if app_name is not None else "/reload-db/"
+kong_api = os.environ.get('KONG_API')
+service_url = os.environ.get('SERVICE_URL')
+if kong_api is not None and service_url is not None:
+    register_reload_db(
+        api_gateway_url=kong_api, service_name=app_name,
+        service_url=service_url, reload_route=reload_route)
 
 
 def dispose_conections():
@@ -24,7 +35,7 @@ def dispose_conections():
             requests.get(dispose_conections_url)
 
 
-@app.route('/reload-db/' + app_name + '/')
+@app.route(reload_route)
 def reload_database():
     """
     Reload database to original state.

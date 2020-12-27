@@ -1,7 +1,5 @@
-click==6.7
 Flask==0.12.2
-itsdangerous==0.24
-Jinja2==2.10
-MarkupSafe==1.0
 Werkzeug==0.14.1
-requests
+requests==2.25.1
+
+https://bitbucket.org/pumpwood-development/pumpwood-kong/get/0.10.tar.bz2

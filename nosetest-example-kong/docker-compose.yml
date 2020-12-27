@@ -1,0 +1,35 @@
+version: "3.3"
+services:
+  ###############
+  # Load Balancer#
+  postgres-kong-database:
+    image: postgres:11
+    restart: always
+    ports:
+      - "9955:5432"
+    environment:
+      - POSTGRES_PASSWORD=kong
+      - POSTGRES_USER=kong
+      - POSTGRES_DB=kong
+
+  load-balancer:
+    image: andrebaceti/boostrap-kong:0.0
+    depends_on:
+      - postgres-kong-database
+    ports:
+      - "8080:8000"
+      - "8001:8001"
+      - "8443:8443"
+      - "7946:7946"
+      - "7946:7946/udp"
+  ###############
+
+  test-database:
+    image: test-regen
+    environment:
+      - APP_NAME=regen-test
+      - KONG_API=http://load-balancer:8001/
+      - SERVICE_URL=http://test-database:5000/
+    ports:
+      - "5432:5432"
+      - "5000:5000"

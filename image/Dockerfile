@@ -3,6 +3,9 @@ FROM postgres:12
 ########################
 # ENV DISPOSE_CONECTIONS
 # ENV APP_NAME
+# ENV KONG_API
+# ENV SERVICE_URL
+# ENV DISPOSE_CONECTIONS
 ########################
 
 EXPOSE 5432
@@ -53,7 +56,9 @@ COPY docker-entrypoint-initdb.d/* /docker-entrypoint-initdb.d/
 ###################################################
 
 COPY start_container.bash /start_container.bash
+COPY wait-for-kong.bash /wait-for-kong.bash
 RUN chmod +x ./start_container.bash
+RUN chmod +x ./wait-for-kong.bash
 ENV FLASK_APP app/app.py
 
 CMD ["./start_container.bash"]
