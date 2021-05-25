@@ -31,6 +31,11 @@ RUN apt-get update
 RUN apt-get install -y timescaledb-postgresql-12
 ###############################################
 
+################################################
+# Installing Partman
+RUN apt-get install -y postgresql-12-partman
+################################################
+
 ###############################################
 # Install postgis
 RUN apt install -y postgis postgresql-12-postgis-3
