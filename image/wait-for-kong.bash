@@ -3,7 +3,7 @@ set -e
 
 if test -z "$KONG_API"
 then
-  echo "KONG_API is not set.\n"
+  echo "KONG_API is not set."
 else
   echo "############################"
   echo "Waiting fot kong to kick in!"

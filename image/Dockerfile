@@ -8,6 +8,8 @@ FROM postgres:12
 # ENV DISPOSE_CONECTIONS
 ########################
 
+ENV FLASK_APP app/app.py
+
 EXPOSE 5432
 EXPOSE 5000
 
@@ -52,18 +54,21 @@ RUN pip3 install -r requirements/python_requirements.txt
 ###############################################
 
 COPY app/ /app
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x ./docker-entrypoint.sh
+RUN chmod 777 -R app
+RUN chown postgres:postgres -R app
 
-###################################################
-# Copia os scripts para a criação da base de backup
-COPY docker-entrypoint-initdb.d/* /docker-entrypoint-initdb.d/
-###################################################
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod 777 /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 COPY start_container.bash /start_container.bash
 COPY wait-for-kong.bash /wait-for-kong.bash
 RUN chmod +x ./start_container.bash
 RUN chmod +x ./wait-for-kong.bash
-ENV FLASK_APP app/app.py
+
+#####################################################
+# Copia os scripts para a criação da base de backup #
+COPY docker-entrypoint-initdb.d/* /docker-entrypoint-initdb.d/
+#####################################################
 
 CMD ["./start_container.bash"]
